@@ -1,0 +1,19 @@
+<mat-card>
+  <div mat-card-image [style.background-image]="'url('+product.defaultImage+')'" class="h-60 bg-gray-300"></div>
+  <mat-card-content class="grow">
+    <h4>{{product.name}}</h4>
+    <p>
+      {{product.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class=" flex justify-between">
+      <div class="flex items-center">
+        <strong>{{product.price | currency}}</strong>
+      </div>
+      <button mat-raised-button color="primary" (click)="addToCart(product)">Add to cart
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

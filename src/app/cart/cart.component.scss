@@ -1,0 +1,10 @@
+td, th {
+  @apply p-2 border-b;
+  &:not(:last-child) {
+    @apply border-r;
+  }
+}
+
+h3 {
+  margin: 0;
+}

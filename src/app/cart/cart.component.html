@@ -1,0 +1,52 @@
+<div class="">
+  <div *ngIf="user$ | async as user else noUser">
+    <h3 class="sticky top-0 text-center text-white bg-primary">{{user.name.firstName}}'s cart</h3>
+
+    <div *ngIf="cart$ | async as cart else loading">
+      <table *ngIf="cart.products.length else emptyCart" class="w-full">
+        <tbody>
+        <tr *ngFor="let product of cart.products; let index = index">
+          <td>{{index + 1}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.price|currency}}</td>
+          <td>
+            <button mat-icon-button (click)="removeFromCart(product.id)">
+              <mat-icon>remove_shopping_cart</mat-icon>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <th colspan="2">Total</th>
+          <th colspan="2">{{total|currency}}</th>
+        </tr>
+        </tfoot>
+      </table>
+      <ng-template #emptyCart>
+        <div class="p-10 text-center">
+          <mat-icon>report_problem</mat-icon>
+          <p>
+            Cart is empty, add a product!
+          </p>
+        </div>
+
+      </ng-template>
+    </div>
+    <ng-template #loading>
+      <div class="flex justify-center p-6">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+
+  </div>
+  <ng-template #noUser>
+    <div class="p-10 text-center">
+      <mat-icon>report_problem</mat-icon>
+      <p>
+        You need to login to see your cart!
+      </p>
+    </div>
+
+  </ng-template>
+</div>

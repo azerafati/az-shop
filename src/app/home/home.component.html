@@ -1,0 +1,19 @@
+<section>
+  <div class="banner"></div>
+  <div class="p-3 text-center search-container">
+    <mat-form-field appearance="outline" class="w-full xl:w-96 md:w-60">
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="Product Name" [formControl]="searchControl">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <div [class.invisible]="!isLoading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <mat-divider></mat-divider>
+  <div *ngIf="(products$ | async) as products"
+       class="grid grid-cols-1 gap-4 p-3 products sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
+    <app-product *ngFor="let product of products" [product]="product"></app-product>
+    <div *ngIf="products.length === 0">No product found!</div>
+  </div>
+</section>

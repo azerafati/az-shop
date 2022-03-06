@@ -1,0 +1,31 @@
+<mat-toolbar class="mat-elevation-z4 shrink-0">
+  <mat-form-field class="text-sm">
+    <mat-label>Choose a User</mat-label>
+    <mat-select (valueChange)="setUser($event)">
+      <mat-option *ngFor="let user of users$ | async"
+                  [value]="user">{{user.name.firstName}} {{user.name.lastName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <h1 class="text-primary text-center w-full">Smart Hardware Shop</h1>
+  <button mat-icon-button color="primary" (click)="sidenav.toggle()">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="grow">
+  <mat-sidenav #sidenav [mode]="(isMobile$ | async) ? 'over' : 'side'" position="end" opened [fixedInViewport]="true"
+               [fixedTopGap]="(isMobile$ | async) ? 56 : 64">
+    <app-cart></app-cart>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<footer>
+  <div class="bg-gray-700 text-white text-center">
+    AZ Shop
+  </div>
+</footer>
